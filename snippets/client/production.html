@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      @font-face {
+        font-family: 'Alsa-Bold';
+        src: url('./fonts/Alsa-Bold.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Alsa-Regular';
+        src: url('./fonts/Alsa-Regular.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Alsa-Light';
+        src: url('./fonts/Alsa-Light.woff') format('woff');
+      }
+      @font-face {
+        font-family: 'Alsa-SemiBold';
+        src: url('./fonts/Alsa-SemiBold.woff') format('woff');
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root-botonic-button" />
+    <div id="root-botonic" />
+    <script type="text/javascript">
+      async function fetchVersion() {
+        const response = await fetch(
+          'https://webchat-sdk.hubtype.com/alsa/webchat_version'
+        )
+        if (!response.ok) {
+          throw new Error('Failed to fetch version file')
+        }
+        const webchatVersion = await response.text()
+        return webchatVersion.trim()
+      }
+
+      async function loadTriggerButton() {
+        let triggerButtonFileName = ''
+        let webchatFileName = ''
+        try {
+          const version = await fetchVersion()
+          triggerButtonFileName = `${version}.webchat-button.botonic.js`
+          webchatFileName = `${version}.webchat.botonic.js`
+        } catch (error) {
+          triggerButtonFileName = 'webchat-button.botonic.js'
+          webchatFileName = 'webchat.botonic.js'
+        }
+
+        const script = document.createElement('script')
+        script.src = `https://webchat-sdk.hubtype.com/alsa/${triggerButtonFileName}`
+        script.onload = () =>
+          initializeBotonic(
+            `https://webchat-sdk.hubtype.com/alsa/${webchatFileName}`
+          )
+        document.body.appendChild(script)
+      }
+
+      function initializeBotonic(webchatUrl) {
+        const country = 'ES'
+        const language = 'es'
+
+        const webchatConfig = {
+          appId: '39d10518-f238-4d32-bb19-5287228635bc',
+          onInit: async app => {
+            app.updateUser({
+              extra_data: {
+                country,
+                language,
+              },
+            })
+            const buttonElement = document.getElementById(buttonElementId)
+            if (buttonElement) {
+              app.open()
+              buttonElement.remove()
+            }
+
+            await window.botonicOnInit(app)
+          },
+          onOpen: async app => {
+            await window.botonicOnOpen(app)
+          },
+          onClose: async app => {
+            await window.botonicOnClose(app)
+          },
+          onMessage: async (app, message) => {
+            await window.botonicOnMessage(app, message)
+          },
+        }
+
+        const buttonElementId = 'root-botonic-button'
+        const botonicElementId = 'root-botonic'
+
+        BotonicTriggerButton.render(
+          buttonElementId,
+          botonicElementId,
+          webchatUrl,
+          webchatConfig,
+          language
+        )
+      }
+      document.addEventListener('DOMContentLoaded', loadTriggerButton)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+name: alsa
+runtime: nodejs
+description: Alsa AWS resources
+backend:
+  url: s3://ht-pulumi-states/services

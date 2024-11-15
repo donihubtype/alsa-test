@@ -1,0 +1,14 @@
+secretsprovider: awskms://alias/pulumi-states
+encryptedkey: AQICAHhFqaaDEP8HZxFcREtA+WT4GNbcGh+IjmwkB+rFLpdb2AHyAOKl5O9p+whLtNSd5aASAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM8GP5pk0jE/i5ZmPlAgEQgDtWcnDL+P/6bWtoIeJdM1MvfAJiw4aJleaPptX3yq8O4NT2cY0A2S6loHkSiH3sqeYlgQ5LrwHadhhI+w==
+config:
+  alsa:clientId: 8f44897b-0eab-4926-bbd9-1df1e37be9bb
+  alsa:clientSecret:
+    secure: v1:np0d5rNQj/x73CcP:zyrmZge+Epy2IG+TbgknYBdc9Ym8x1dTKmj84+AkuYhXNrhnNDjTP2ndBNYU31GjyI5q5Q==
+  alsa:environment: dev
+  alsa:privateSubnetIds:
+    - subnet-0bc9ac1fca0e6d819
+  alsa:securityGroupsIds:
+    - sg-035ce68a2117df3bc
+  alsa:tokenUrl: https://aither.alsa.es/invoke/pub.apigateway.oauth2/getAccessToken
+  aws:profile: capps-dev-super-admin
+  aws:region: eu-west-1

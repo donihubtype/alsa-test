@@ -1,0 +1,17 @@
+secretsprovider: awskms://alias/pulumi-states
+encryptedkey: AQICAHhFqaaDEP8HZxFcREtA+WT4GNbcGh+IjmwkB+rFLpdb2AHyAOKl5O9p+whLtNSd5aASAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQM8GP5pk0jE/i5ZmPlAgEQgDtWcnDL+P/6bWtoIeJdM1MvfAJiw4aJleaPptX3yq8O4NT2cY0A2S6loHkSiH3sqeYlgQ5LrwHadhhI+w==
+config:
+  air-europa:tokenUrl: https://login.microsoftonline.com
+  air-europa:clientId: 33ea8e86-d74d-4e5f-ab22-a7c672962690
+  air-europa:clientSecret:
+    secure: v1:75YYJL3f0fuH+y5M:AKSsgPM/+td3fnXL6Tg2AjEU2yosdxbevRH+YVwPMU3Kz7+kodIdiBN+khGkBUnIi8sOyr1h8xY=
+  air-europa:environment: staging
+  air-europa:privateSubnetIds:
+    - subnet-04cca7165e4beae98
+    - subnet-01057fc9574bcf46a
+  air-europa:scope: api://29ecf024-0ea5-4e9d-bb43-fb669d087366/.default
+  air-europa:securityGroupsIds:
+    - sg-095c852521818bbcb
+  air-europa:tenantId: 4f01443b-0c99-4b7b-8bb9-40ae1051b482
+  aws:profile: capps-prod-super-admin
+  aws:region: eu-west-1

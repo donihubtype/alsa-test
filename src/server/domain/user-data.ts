@@ -15,6 +15,7 @@ type UserDataOptions = {
 export class UserData {
   public country: string
   public language: string
+  public test?: string
 
   constructor(options: UserDataOptions) {
     this.country = options.country

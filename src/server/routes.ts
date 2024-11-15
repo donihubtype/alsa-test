@@ -6,11 +6,13 @@ import { ContentIdAction } from './actions/default/content-id'
 import { ExtendedFlowBuilderAction } from './actions/default/extended-flow-builder'
 import { StartConversationAction } from './actions/default/start-conversation'
 import { UpdateSessionAction } from './actions/default/update-session'
+import { TestAction } from './actions/test-action'
 import {
   BACKDOOR_COMMANDS,
   CONTENT_ID_PAYLOAD_REGEX,
   SET_PAYLOAD_BACKDOOR_REGEX,
   START_CONVERSATION_PAYLOAD,
+  TEST_ACTION_PAYLOAD_REGEX,
   UPDATE_SESSION_PAYLOAD_REGEX,
 } from './constants'
 import { BotRequest } from './types'
@@ -28,6 +30,12 @@ export function routes(request: BotRequest): Route[] {
       path: 'bot-info-backdoor',
       text: BACKDOOR_COMMANDS.botInfo,
       action: BotInfoBackdoorAction,
+    },
+    {
+      path: 'text-action',
+      text: 'test',
+      payload: TEST_ACTION_PAYLOAD_REGEX,
+      action: TestAction,
     },
     {
       path: 'content-id',

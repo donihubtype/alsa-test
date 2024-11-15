@@ -31,3 +31,7 @@ export const EXAMPLE_WEBVIEW_URL = 'https://www.example_webview.com'
 export const WEBVIEW_BY_URL: Record<string, () => ReactElement> = {
   [EXAMPLE_WEBVIEW_URL]: ExampleWebview,
 }
+
+export const TEST_ACTION_PAYLOAD = 'test'
+
+export const TEST_ACTION_PAYLOAD_REGEX = new RegExp(`^${TEST_ACTION_PAYLOAD}.*`)
